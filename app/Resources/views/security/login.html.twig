@@ -1,0 +1,22 @@
+{% extends "/layout.html.twig" %}
+{% block title %}
+    Вход
+{% endblock %}
+{% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}" type="text/css" />
+{% endblock %}
+{% block user_content %}
+    <div class="container">
+        {% if error %}
+            <div>{{ "Неправильные данные! Проверьте и введите еще раз" }}</div>
+        {% endif %}
+    </div>
+    {{ form_start(form,{'attr': {'class': 'form-signin'}}) }}
+    {{ form_widget(form) }}
+    <label class="checkbox">
+    <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'Sign in'|trans }}</button>
+    {{ form_end(form) }}
+{% endblock user_content %}
