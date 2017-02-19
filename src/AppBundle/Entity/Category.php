@@ -46,7 +46,8 @@ class Category
         return $this->id;
     }
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->articles = new ArrayCollection();
     }
 

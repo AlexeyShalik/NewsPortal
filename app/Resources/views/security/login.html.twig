@@ -11,7 +11,13 @@
         {% if error %}
             <div>{{ "Неправильные данные! Проверьте и введите еще раз" }}</div>
         {% endif %}
+        {% if message %}
+            <div class="card-panel green lighten-2">
+                {{ message }}
+            </div>
+        {% endif %}
     </div>
+
     {{ form_start(form,{'attr': {'class': 'form-signin'}}) }}
     {{ form_widget(form) }}
     <label class="checkbox">

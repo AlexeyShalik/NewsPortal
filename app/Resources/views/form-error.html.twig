@@ -1,0 +1,12 @@
+<script>
+    $(document).ready(function() {
+        $('body').append('<div class="container"><div class="alert alert-info">{{ error }}<div><div>');
+
+        setTimeout (function (){
+            $("div.alert").hide(2000, function () {
+                $(this).remove();
+            })
+        }
+        , 5000);
+    });
+</script>

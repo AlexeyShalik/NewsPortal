@@ -9,6 +9,12 @@
 </head>
 <body>
 {% block user_content %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+{% endblock %}
+
 {% endblock user_content %}
+
 </body>
 </html>
