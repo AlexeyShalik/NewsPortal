@@ -46,7 +46,7 @@ class PasswordRecoveryService
     public function sendEmail($email, $token)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Registration at ProductCatalog')
+            ->setSubject('Registration at NewsPortal')
             ->setFrom('newsportalnovostyashka@gmail.com')
             ->setTo($email)
             ->setContentType('text/html')

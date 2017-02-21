@@ -1,0 +1,20 @@
+{% extends "/layout.html.twig" %}
+
+{% block user_content %}
+{% for msg in app.session.flashBag.get('success') %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m5">
+                <div class="card-panel teal">
+                            <span class="white-text">
+                                {{ msg }}
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div>
+    You have successfully activated your account
+</div>
+{% endblock user_content %}
