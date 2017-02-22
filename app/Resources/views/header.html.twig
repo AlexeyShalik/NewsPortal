@@ -1,0 +1,44 @@
+<header>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.btn.icon.css') }}" type="text/css" />
+    {% endblock %}
+    <nav class="navbar navbar-default headerNews">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand"  style="font-family: Monotype Corsiva;color:blue; cursor: default">News Portal</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#" class="home">Home <span class="sr-only">(current)</span></a></li>
+                </ul>
+
+                {% block javascripts %}
+                    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+                    <script src="{{ asset('css/bootstrap/js/bootstrap.min.js') }}"></script>
+                {% endblock %}
+                {% if user == null %}
+                    <div class="container">
+                        <a href="{{ path("security_login") }}" class="btn btn-primary logoutUser">Вход</a>
+                        <a href="{{ path("user_register") }}" class="btn btn-info logoutUser">Регистрация</a>
+                    </div>
+                {% elseif  user != null %}
+                    <div class="container">
+                        <a href="{{ path("logout") }}" class="btn btn-primary logoutUser">Выход</a>
+
+                        <div class="btn-group userIcon">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown"  href="#">
+                                <img src="/glyphicons-4-user.png" class="icon"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path("show_profile") }}"><i class="icon-pencil"></i> Редактировать</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>

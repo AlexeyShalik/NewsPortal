@@ -41,6 +41,11 @@ class Article
     private $author;
 
     /**
+     * @ORM\Column(name="short_description", type="text")
+     */
+    private $shortDescription;
+
+    /**
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -49,6 +54,7 @@ class Article
      * @ORM\Column(name="year", type="date")
      */
     private $year;
+
     /**
      * Get id
      *
@@ -177,5 +183,29 @@ class Article
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     *
+     * @return Article
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
     }
 }

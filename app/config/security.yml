@@ -21,7 +21,8 @@ security:
                     - app.security.login_form_authenticator
             logout:
                 path:   /logout
-                target: /
+                target: /portal
+
             switch_user: true
 
     access_control:

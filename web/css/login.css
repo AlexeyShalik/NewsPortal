@@ -49,6 +49,12 @@ ul{
     left: 180px;
 }
 
-.input-field>div>input {
+.recovery{
+    position: absolute;
+    left:650px;
+}
 
+.home>a,
+.recovery>a{
+    text-decoration:none;
 }

@@ -1,0 +1,70 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+header {
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: black solid;
+}
+
+main{
+}
+main aside{
+	float:left;
+	width: 15%;
+	padding: 15px 30px;
+	box-sizing: border-box;
+	position: absolute;
+	min-height: 100% ;
+    border-right:2px solid ;
+}
+main section {
+	padding-left:15px;
+	float: right;
+	width: 80%;
+	box-sizing: border-box;
+	padding-right: 20px;
+}
+main:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+main section article {
+	/* Для обработки статьи */
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  left:0;
+  background: black;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+#wrapper {
+  position: relative;
+  min-height: calc(100% - 107px);
+}
+.userIcon{
+    float:right;
+    margin-top: 9px;
+}
+
+.logoutUser {
+    float:right;
+    margin-left: 10px;
+    margin-top: 9px;
+}
+
+ .headerNews{
+     border: 1px solid #00FA9A;
+     margin-bottom: 5px;
+ }

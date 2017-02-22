@@ -8,3 +8,7 @@ logout:
 login:
   path: /login
   defaults: { _controller: AppBundle:Security:login }
+
+portal:
+    path: /portal
+    defaults: { _controller: AppBundle:NewsPortal:show }

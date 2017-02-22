@@ -26,7 +26,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->sendEmail($user->getEmail(), $user);
+            $this->sendEmailAction($user->getEmail(), $user);
 
             return $this->get('security.authentication.guard_handler')
               ->authenticateUserAndHandleSuccess(
@@ -43,7 +43,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function sendEmail($email, $user)
+    public function sendEmailAction($email, $user)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Registration at NewsPortal')
@@ -75,5 +75,14 @@ class UserController extends Controller
         $this->addFlash('success', 'Welcome '.$user->getUsername());
 
         return $this->render('active.html.twig');
+    }
+
+    /**
+     * @Route("/showProfile", name="show_profile")
+     */
+    public function showProfileAction()
+    {
+        $user = $this->getUser();
+        return $this->render('user/profile.html.twig', array('user' => $user));
     }
 }
