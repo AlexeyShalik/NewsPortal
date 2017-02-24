@@ -1,0 +1,24 @@
+#edit_user_isActive>label {
+    margin-right: 40px;
+}
+
+.show-tick{
+    position: relative;
+    left: 35px;
+}
+
+.mailing{
+    position: relative;
+    left: 35px;
+}
+
+.control-buttons{
+    position: relative;
+    top: 35px;
+    margin-right: 12px;
+}
+
+.edit-form > div{
+    margin-top: 20px;
+}
+

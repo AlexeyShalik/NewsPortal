@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block user_content %}
-    {{ parent() }}
     {% include 'header.html.twig'%}
 	<div id="wrapper">
 	<main>
@@ -19,7 +18,6 @@
             {% block javascripts %}
 				<script src="{{ asset('js/listCategory.js') }}"></script>
             {% endblock %}
-
 		</aside>
 
 		<section>
@@ -29,17 +27,15 @@
 				<table class="table table-hover table-responsive">
 					<thead>
 					<tr>
-						<th>id</th>
 						<th>News</th>
-						<th>Description</th>
 					</tr>
 					</thead>
 					<tbody>
                     {% for news in result %}
 						<tr>
-							<td><img src="newsImage/{{ news.id}}.jpg" /></td>
-							<td>{{ news.news}}</td>
-							<td>{{ news.shortDescription}}</td>
+							<td><img src="/img/newsImage/mini/{{ news.id}}.jpg" ></td>
+							<td><strong>{{ news.news}}</strong><br>
+							{{ news.shortDescription}}</td>
 						</tr>
                     {% endfor %}
 					</tbody>
@@ -52,5 +48,6 @@
 		</section>
 	</main>
   </div>
+    {{ parent() }}
 {% endblock user_content %}
 

@@ -30,6 +30,6 @@ class NewsPortalController extends Controller
         );
 
 
-        return $this->render('index.html.twig', array('user' => $user, 'result' => $result));
+        return $this->render('index.html.twig', array('result' => $result));
     }
 }

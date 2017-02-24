@@ -30,3 +30,7 @@ security:
          - { path: ^/content, roles: ROLE_MODERATOR}
          - { path: ^/user, roles: ROLE_USER}
          - { path: ^/guest, roles: ROLE_GUEST}
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_MODERATOR]
+        ROLE_MODERATOR: [ROLE_USER]

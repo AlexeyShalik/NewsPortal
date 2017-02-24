@@ -21,15 +21,17 @@ class CreateUserCommand extends ContainerAwareCommand
             ->getRepository('AppBundle:User')
             ->findAll();
         foreach ($users as $user) {
-            $message = \Swift_Message::newInstance()
-                ->setSubject('NewsPortal')
-                ->setFrom('newsportalnovostyashka@gmail.com')
-                ->setTo($user->getEmail())
-                ->setCharset('UTF-8')
-                ->setContentType('text/html')
-                ->setBody($this->getContainer()->get('templating')->render('cron-email.html.twig'));
+            if ($user->getMailingOfLetters()==true) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('NewsPortal')
+                    ->setFrom('newsportalnovostyashka@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setCharset('UTF-8')
+                    ->setContentType('text/html')
+                    ->setBody($this->getContainer()->get('templating')->render('cron-email.html.twig'));
 
-            $this->getContainer()->get('mailer')->send($message);
+                $this->getContainer()->get('mailer')->send($message);
+            }
         }
         $output->writeln('Message sent successfully!');
     }

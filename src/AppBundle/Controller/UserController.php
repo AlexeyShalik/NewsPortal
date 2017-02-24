@@ -76,13 +76,4 @@ class UserController extends Controller
 
         return $this->render('active.html.twig');
     }
-
-    /**
-     * @Route("/showProfile", name="show_profile")
-     */
-    public function showProfileAction()
-    {
-        $user = $this->getUser();
-        return $this->render('user/profile.html.twig', array('user' => $user));
-    }
 }

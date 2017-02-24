@@ -59,11 +59,16 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-
+    /**
+     * @ORM\Column( name="mailing_of_letters", type="boolean")
+     */
+     private $mailingOfLetters;
 
     public function __construct()
     {
         $this->isActive = false;
+        $this->mailingOfLetters = false;
+        $this->roles[] = 'ROLE_USER';
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
@@ -87,7 +92,7 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return $this->roles;
     }
 
     public function eraseCredentials()
@@ -227,5 +232,29 @@ class User implements UserInterface, \Serializable
     {
         $this->plainPassword = $plainPassword;
         $this->password = null;
+    }
+
+    /**
+     * Set mailingOfLetters
+     *
+     * @param boolean $mailingOfLetters
+     *
+     * @return User
+     */
+    public function setMailingOfLetters($mailingOfLetters)
+    {
+        $this->mailingOfLetters = $mailingOfLetters;
+
+        return $this;
+    }
+
+    /**
+     * Get mailingOfLetters
+     *
+     * @return boolean
+     */
+    public function getMailingOfLetters()
+    {
+        return $this->mailingOfLetters;
     }
 }

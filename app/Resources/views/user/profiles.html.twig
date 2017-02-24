@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block user_content %}
+    {% include 'header.html.twig'%}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Is active</th>
+                            <th>Mailing</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                {% for roles in user.roles %}
+                                {{ roles|json_encode}}<br>
+                                {% endfor %}
+                                </td>
+                                <td>
+                                    {% if  user.isActive   == false %}
+                                        No
+                                    {% else %}
+                                        Yes
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if  user.mailingOfLetters   == false %}
+                                    No
+                                    {% else %}
+                                    Yes
+                                    {% endif %}
+                                </td>
+                                <td><a class="btn btn-default" href="{{ path('admin_users_edit', { 'id': user.id }) }}">
+                                      <i class="icon-pencil"></i> </a>
+                                    <a class="btn btn-default" href="{{ path('admin_users_remote', { 'id': user.id }) }}">
+                                    <i class="icon-trash"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock user_content %}
+
