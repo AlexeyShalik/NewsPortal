@@ -10,7 +10,7 @@
 }
 
 .headerNews{
-    border: 1px solid #00FA9A;
+    border: 1px solid #e7e7e7;
     margin-bottom: 5px;
 }
 
@@ -24,4 +24,8 @@ header {
     text-align: center;
     font-size: 15px;
     border-bottom: black solid;
+}
+
+.divider {
+    border:#e7e7e7 solid 1px;
 }

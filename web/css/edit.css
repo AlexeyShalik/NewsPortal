@@ -2,23 +2,29 @@
     margin-right: 40px;
 }
 
-.show-tick{
+.show-tick {
     position: relative;
     left: 35px;
 }
 
-.mailing{
-    position: relative;
-    left: 35px;
+.mailing {
+    margin-right: 30px;
 }
 
-.control-buttons{
-    position: relative;
-    top: 35px;
+.control-buttons {
+    margin-top: 30px;
     margin-right: 12px;
 }
 
-.edit-form > div{
+.edit-form > div {
     margin-top: 20px;
+}
+
+.empty {
+    height: 40px;
+}
+
+#edit_articles_description {
+    min-height: 70px;
 }
 

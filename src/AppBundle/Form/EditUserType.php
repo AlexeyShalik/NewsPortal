@@ -15,25 +15,57 @@ class EditUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, array('attr' => array( 'class' => 'form-control', 'placeholder' => "email")))
-            ->add('username', TextType::class, array('attr' => array( 'class' => 'form-control', 'placeholder' => "name" )))
-            ->add('isActive', ChoiceType::class, [
-                'expanded' => true,
-                'choices' => [
-                    'Yes' => true,
-                    'No' => false,
-                ],
-            ])
-            ->add('mailingOfLetters', CheckboxType::class, array('attr' => array( 'class' => 'mailing')))
-            ->add('roles', ChoiceType::class, [
-                'multiple' => true,
-                'choices' => [
-                    'Admin' => 'ROLE_ADMIN',
-                    'Moderator' => 'ROLE_MODERATOR',
-                    'User' => 'ROLE_USER',
-                    'Guest' => 'ROLE_GUEST',
-                ], 'attr' => array( 'class' => 'selectpicker', 'multiple data-max-options' => "2" ),
-            ]);
+            ->add(
+                'email',
+                EmailType::class,
+                array(
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => "email")
+                )
+            )
+            ->add(
+                'username',
+                TextType::class,
+                array(
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => "name"
+                    )
+                )
+            )
+            ->add(
+                'isActive',
+                ChoiceType::class,
+                array(
+                    'expanded' => true,
+                    'choices' => array(
+                        'Yes' => true,
+                        'No' => false,
+                    ),
+                )
+            )
+            ->add(
+                'mailingOfLetters',
+                CheckboxType::class
+            )
+            ->add(
+                'roles',
+                ChoiceType::class,
+                array(
+                    'multiple' => true,
+                    'choices' => array(
+                        'Admin' => 'ROLE_ADMIN',
+                        'Moderator' => 'ROLE_MODERATOR',
+                        'User' => 'ROLE_USER',
+                        'Guest' => 'ROLE_GUEST',
+                    ),
+                    'attr' => array(
+                        'class' => 'selectpicker',
+                        'multiple data-max-options' => "2"
+                    ),
+                )
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

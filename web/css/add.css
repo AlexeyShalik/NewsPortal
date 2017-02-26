@@ -1,0 +1,18 @@
+.addButton>div {
+    height: 40px;
+    background-color: #e7e7e7;
+    margin-top: 7px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.addButton:hover,
+.addButton:visited,
+.addButton:active,
+.addButton:link{
+    color:black;
+    text-decoration:none;
+}
+

@@ -17,20 +17,49 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, array('attr' => array(
-                'class'=>'form-control', 'placeholder'=>'Name',)))
-            ->add('email', EmailType::class, array('attr' => array(
-                ' class'=>'form-control', 'placeholder'=>'Email address',
-            )))
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => array('attr' => array(
-                    ' class'=>'form-control', 'placeholder'=>'Password',)),
-                'second_options' => array('attr' => array(
-                    ' class'=>'form-control', 'placeholder'=>'Repeat Password',)),
-            ])
-            ->add('save', SubmitType::class, array('label' => 'sign up', 'attr' => array(
-                'class'=>'btn btn-lg btn-primary btn-block')));
+            ->add(
+                'username',
+                TextType::class,
+                array(
+                    'attr' => array(
+                        'class'=>'form-control',
+                        'placeholder'=>'Name',
+                        )
+                )
+            )
+            ->add(
+                'email',
+                EmailType::class,
+                array(
+                    'attr' => array(
+                        ' class'=>'form-control',
+                        'placeholder'=>'Email address',
+                        )
+                )
+            )
+            ->add(
+                'plainPassword',
+                RepeatedType::class,
+                array(
+                    'type' => PasswordType::class,
+                    'first_options' => array(
+                        'attr' => array(
+                            'class'=>'form-control', 'placeholder'=>'Password',)),
+                            'second_options' => array(
+                                'attr' => array(
+                                    'class'=>'form-control',
+                                    'placeholder'=>'Repeat Password',)),
+            ))
+            ->add(
+                'save',
+                SubmitType::class,
+                array(
+                    'label' => 'sign up',
+                    'attr' => array(
+                        'class'=>'btn btn-lg btn-primary btn-block'
+                    )
+                )
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

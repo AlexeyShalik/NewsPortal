@@ -14,9 +14,18 @@ class PasswordRecoveryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('password_repeat', RepeatedType::class, array(
+            ->add(
+                'email',
+                EmailType::class
+            )
+            ->add(
+                'password',
+                PasswordType::class
+            )
+            ->add(
+                'password_repeat',
+                RepeatedType::class,
+                array(
                     'type' => PasswordType::class,
                     'first_options' => array('label' => 'New password'),
                     'second_options' => array('label' => 'Repeat new password'),

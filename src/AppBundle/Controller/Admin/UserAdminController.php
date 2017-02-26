@@ -15,12 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 class UserAdminController extends Controller
 {
     /**
-     * @Route("/showProfiles", name="show_profiles")
+     * @Route("/showProfiles", name="admin_show_profiles")
      */
-    public function indexAction()
+    public function showProfilesAction()
     {
-        $user=$this->getUser();
-
         $users = $this->getDoctrine()
             ->getRepository('AppBundle:User')
             ->findAll();
@@ -45,9 +43,7 @@ class UserAdminController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'User updated.');
-
-            return $this->redirectToRoute('show_profiles');
+            return $this->redirectToRoute('admin_show_profiles');
         }
 
         return $this->render('user/edit-profile-user.html.twig', [
@@ -63,6 +59,6 @@ class UserAdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
-        return $this->redirectToRoute('show_profiles');
+        return $this->redirectToRoute('admin_show_profiles');
     }
 }
