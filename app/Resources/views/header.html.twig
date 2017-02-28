@@ -7,17 +7,17 @@
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <a class="navbar-brand"  style="font-family: Monotype Corsiva;color:blue; cursor: default"><strong>News Portal</strong></a>
+                <a class="navbar-brand"  style="font-family: Monotype Corsiva;color:blue; cursor: default"><strong>{% trans %}News Portal{% endtrans %}</strong></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     {% if app.request.getPathInfo == '/portal' %}
                     <li class="active">
-                        <a href="#" class="home">Home <span class="sr-only">(current)</span></a>
+                        <a href="#" class="home">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
                         {% else %}
                     <li>
-                        <a href="{{ path("portal") }}" class="home">Home <span class="sr-only">(current)</span></a>
+                        <a href="{{ path("portal") }}" class="home">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
                     {% endif %}
                     </li>
                 </ul>
@@ -28,22 +28,37 @@
                 {% endblock %}
                 {% if app.user  == null %}
                     <div class="container">
-                        <a href="{{ path("security_login") }}" class="btn btn-primary logoutUser">Вход</a>
-                        <a href="{{ path("user_register") }}" class="btn btn-info logoutUser">Регистрация</a>
+                        <a href="{{ path("security_login") }}" class="btn btn-primary logoutUser">{% trans %}Sign in{% endtrans %}</a>
+                        <a href="{{ path("user_register") }}" class="btn btn-info logoutUser">{% trans %}Sign up{% endtrans %}</a>
                     </div>
                 {% elseif  app.user  != null %}
                     <div class="container">
-                        <a href="{{ path("logout") }}" class="btn btn-primary logoutUser">Выход</a>
+                        <a href="{{ path("logout") }}" class="btn btn-primary logoutUser">{% trans %}Exit{% endtrans %}</a>
 
                         <div class="btn-group userIcon">
                             <a class="btn dropdown-toggle" data-toggle="dropdown"  href="#">
                                 <img src="/img/glyphicons-4-user.png" class="icon"/>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path("admin_show_profiles") }}"><i class="icon-pencil"></i> Editing user</a></li>
-                                <li><a href="{{ path("moderator_show_articles") }}"><i class="icon-pencil"></i> Editing news</a></li>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                <li><a href="{{ path("admin_show_profiles") }}"><i class="icon-pencil"></i>
+                                        {% trans %}
+                                           Editing users
+                                        {% endtrans %}</a></li>
+                                {% endif %}
+                                {% if is_granted("ROLE_MODERATOR") %}
+                                <li><a href="{{ path("moderator_show_articles") }}"><i class="icon-pencil"></i>
+                                        {% trans %}
+                                            Editing news
+                                        {% endtrans %}
+                                    </a></li>
                                 <li class="divider"></li>
-                                <li><a href="{{ path("moderator_show_articles") }}"><i class="icon-off"></i>Exit</a></li>
+                                {% endif %}
+                                <li><a href="{{ path('logout') }}"><i class="icon-off"></i>
+                                        {% trans %}
+                                            Exit
+                                        {% endtrans %}
+                                    </a></li>
                             </ul>
                         </div>
                     </div>

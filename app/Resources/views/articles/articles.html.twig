@@ -14,7 +14,7 @@
                     <a class="addButton" href="{{ path('moderator_articles_add') }}">
                         <div>
                         <i class="icon-plus"></i>
-                        Add Article
+                            {% trans %}Add Article{% endtrans %}
                         </div>
                     </a>
 
@@ -22,11 +22,11 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>News</th>
-                        <th>Category</th>
-                        <th>Author</th>
-                        <th>Short description</th>
-                        <th>Date</th>
+                        <th>{% trans %}Articles{% endtrans %}</th>
+                        <th>{% trans %}Category{% endtrans %}</th>
+                        <th>{% trans %}Author{% endtrans %}</th>
+                        <th>{% trans %}Short description{% endtrans %}</th>
+                        <th>{% trans %}Date{% endtrans %}</th>
                         <th> </th>
                     </tr>
                     </thead>

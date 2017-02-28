@@ -12,18 +12,20 @@
     <div class="container">
         <div class="">
             <div class="">
-                <h2>Edit article</h2>
+                <h2>{% trans %}Add article{% endtrans %}</h2>
 
                 {{ form_start(articleForm, {'attr' : {'class' : 'edit-form', 'enctype' : 'multipart/form-data'}}) }}
-                {{ form_row(articleForm.news) }}
+                    {{ form_label(articleForm.news,'Name article') }}
+                    {{ form_errors(articleForm.news) }}
+                    {{ form_widget(articleForm.news) }}
                 {{ form_row(articleForm.category) }}
                 {{ form_row(articleForm.author) }}
                 {{ form_row(articleForm.shortDescription)}}
                 {{ form_row(articleForm.description)}}
                 <div>
-                    <label class="required">Image</label><br>
+                    <label class="required">{% trans %}Image{% endtrans %}</label><br>
                         <label class="btn btn-success btn-file" id="image">
-                            Select a picture <input type="file" name="photo" style="display: none;">
+                            {% trans %}Select a picture{% endtrans %} <input type="file" name="photo" style="display: none;">
                         </label>
                 </div>
                 <div>
@@ -44,8 +46,8 @@
                         });
                     </script>
                 </div>
-                <button type="submit" class="btn control-buttons" formnovalidate>Save</button>
-                <button type="button" class="btn btn-danger control-buttons" onclick="history.back(-1)">Cancel</button>
+                <button type="submit" class="btn control-buttons" formnovalidate>{% trans %}Save{% endtrans %}</button>
+                <button type="button" class="btn btn-danger control-buttons" onclick="history.back(-1)">{% trans %}Cancel{% endtrans %}</button>
                 {{ form_end(articleForm) }}
                 <div class="empty"></div>
             </div>

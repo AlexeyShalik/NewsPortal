@@ -5,20 +5,17 @@ parameters:
 
 services:
     password_recovery:
-        class: AppBundle\Services\PasswordRecoveryService
+        class: AppBundle\Services\PasswordRecovery\PasswordRecoveryService
         autowire: true
 #        arguments: ["@service_container", "@doctrine.orm.entity_manager"]
-    category_service:
-        class: AppBundle\Services\CategoryService
-        autowire: true
-    products_service:
-        class: AppBundle\Services\ProductsService
-        autowire: true
-    data_processor:
-        class: AppBundle\Services\DataProcessor
-        autowire: true
     form_utils:
-        class: AppBundle\Services\FormUtilsService
+        class: AppBundle\Services\PasswordRecovery\FormUtilsService
+    recovery:
+        class: AppBundle\Services\PasswordRecovery\Recovery
+        autowire: true
+    email:
+        class: AppBundle\Services\PasswordRecovery\SendEmail
+        autowire: true
 #        arguments: ["@security.password_encoder"]
 # , "plain_value", "%parameter_name%"
 #    service_name:
@@ -33,3 +30,7 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
+    dql_for_knp_paginator:
+        class: AppBundle\Services\DQL\DqlForKnpPaginator
+        autowire: true
+

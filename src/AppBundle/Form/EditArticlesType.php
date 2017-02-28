@@ -35,7 +35,6 @@ class EditArticlesType extends AbstractType
                     'choice_label' => 'name',
                     'attr' => array(
                         'class' => 'form-control',
-                        'placeholder' => "name"
                     )
                 )
             )

@@ -17,17 +17,20 @@
 
             {% block javascripts %}
 				<script src="{{ asset('js/listCategory.js') }}"></script>
+				{#<script src="{{ asset('js/jquery.Pagination.js') }}"></script>
+				<script src="{{ asset('js/common.js') }}"></script>#}
+				<script src="{{ asset('js/test.js') }}"></script>
             {% endblock %}
 		</aside>
 
 		<section>
-
+            {% if is_granted("ROLE_USER") %}
 			<article>
 
-				<table class="table table-hover table-responsive">
+				<table class="table table-hover table-responsive " id="page-content">
 					<thead>
 					<tr>
-						<th>News</th>
+						<th>{% trans %}News{% endtrans %}</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -45,6 +48,17 @@
 				</div>
 					
 			</article>
+             {% else %}
+                 <div class="access">
+                     {% if  app.user != null%}
+                         {% trans %}Check your email for new messages and activate your account{% endtrans %}
+                     {% else %}
+                 <p>{% trans %}If you want see news, you need to{% endtrans %} <a href="{{ path("user_register") }}">{% trans %}sign up{% endtrans %}</a> {% trans %}in the portal{% endtrans %}<br>
+                     {% trans %}or{% endtrans %} <a href="{{ path("security_login") }}">{% trans %}enter{% endtrans %}</a>
+                 </p>
+                     {% endif %}
+                 </div>
+            {% endif %}
 		</section>
 	</main>
   </div>

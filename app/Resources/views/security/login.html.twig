@@ -9,11 +9,11 @@
 {% block user_content %}
     <div class="container">
         {% if error %}
-            <div>{{ "Неправильные данные! Проверьте и введите еще раз" }}</div>
+            <div>{% trans %} Wrong data! Check and enter yet time {% endtrans %}</div>
         {% endif %}
         {% if message %}
             <div class="card-panel green lighten-2">
-                {{ message }}
+                {{ message|trans }}
             </div>
         {% endif %}
     </div>
@@ -21,11 +21,11 @@
     {{ form_start(form,{'attr': {'class': 'form-signin'}}) }}
     {{ form_widget(form) }}
     <label class="checkbox">
-    <input type="checkbox" value="remember-me"> Remember me
+    <input type="checkbox" value="remember-me">{% trans %} Remember me {% endtrans %}
     </label>
     <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'Sign in'|trans }}</button>
     <div class="container recovery">
-        <a href="{{ path("password_recovery") }}">Forgot your password? click here!</a>
+        <a href="{{ path("password_recovery") }}">{% trans %}Forgot your password? click here! {% endtrans %}</a>
     </div>
     {{ form_end(form) }}
 

@@ -11,15 +11,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class NewsPortalController extends Controller
 {
     /**
-     * @Route("/portal", name="portal")
+     * @Route("/user")
      */
     public function showAction(Request $request)
     {
         $user = $this->getUser();
 
+        $dqlService = $this->get('dql_for_knp_paginator');
+        $dql = $dqlService->getDql();
         $em  = $this->getDoctrine()->getEntityManager();
-       // $newsPosts  = $em->getRepository('AppBundle:Article')->findAll();
-        $dql = "SELECT news FROM AppBundle:Article news";
         $query = $em->createQuery($dql);
 
         $paginator  = $this->get('knp_paginator');

@@ -18,12 +18,12 @@ class MenuBuilder implements ContainerAwareInterface
         $childrenForCategories = $menu->addChild('Categories', array('route' => 'portal',
              'childrenAttributes' => array('class' => 'nav nav-list', 'hidden' => 'true')))
             ->setAttributes(array('id' => 'category', 'style' => "cursor:default"));
-        $childrenForCategories->addChild('Politics', array('uri' => 'homepage'));
-        $childrenForCategories->addChild('Business', array('uri' => 'homepage'));
-        $childrenForCategories->addChild('Sport', array('uri' => 'homepage'));
-        $childrenForCategories->addChild('Music and life', array('uri' => 'homepage'));
-        $childrenForCategories->addChild('Travel', array('uri' => 'homepage'));
-        $childrenForCategories->addChild('Science', array('uri' => 'homepage'));
+        $childrenForCategories->addChild('Politics', array('route' => 'homepage'));
+        $childrenForCategories->addChild('Business', array('route' => 'homepage'));
+        $childrenForCategories->addChild('Sport', array('route' => 'homepage'));
+        $childrenForCategories->addChild('Music and life', array('route' => 'homepage'));
+        $childrenForCategories->addChild('Travel', array('route' => 'homepage'));
+        $childrenForCategories->addChild('Science', array('route' => 'homepage'));
 
 
         return $menu;

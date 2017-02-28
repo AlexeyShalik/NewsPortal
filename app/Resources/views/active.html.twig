@@ -7,14 +7,17 @@
             <div class="col s12 m5">
                 <div class="card-panel teal">
                             <span class="white-text">
-                                {{ msg }}
+                                {{ msg|trans }}
                             </span>
                 </div>
             </div>
         </div>
     </div>
 {% endfor %}
-<div>
-    You have successfully activated your account
+<div class="container" >
+    {% trans %}You have successfully activated your account{% endtrans %}
 </div>
+    <div class="container home">
+        <a class="logo alone"  href="{{ url('logout') }}">{% trans %}News Portal{% endtrans %}</a>
+    </div>
 {% endblock user_content %}

@@ -19,18 +19,25 @@ class CreateUserCommand extends ContainerAwareCommand
     {
         $users = $this->getContainer()->get('doctrine')
             ->getRepository('AppBundle:User')
-            ->findAll();
-        foreach ($users as $user) {
-            if ($user->getMailingOfLetters()==true) {
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('NewsPortal')
-                    ->setFrom('newsportalnovostyashka@gmail.com')
-                    ->setTo($user->getEmail())
-                    ->setCharset('UTF-8')
-                    ->setContentType('text/html')
-                    ->setBody($this->getContainer()->get('templating')->render('cron-email.html.twig'));
+            ->findByMailingOfLetters(true);
 
-                $this->getContainer()->get('mailer')->send($message);
+        $count = 0;
+
+        foreach ($users as $user) {
+            $count += 1;
+            $message = \Swift_Message::newInstance()
+                ->setSubject('NewsPortal')
+                ->setFrom($this->getContainer()->getParameter('mailer_user'))
+                ->setTo($user->getEmail())
+                ->setCharset('UTF-8')
+                ->setContentType('text/html')
+                ->setBody($this->getContainer()->get('templating')->render('cron-email.html.twig'));
+
+            $this->getContainer()->get('mailer')->send($message);
+
+            if ($count > 100) {
+                gc_collect_cycles();
+                $count = 0;
             }
         }
         $output->writeln('Message sent successfully!');

@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserRegistrationForm;
-use AppBundle\Form\EditUserFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,6 +68,7 @@ class UserController extends Controller
             ->getRepository('AppBundle:User')
             ->find($token);
         $user->setIsActive(true);
+        $user->setRoles('ROLE_USER');
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 

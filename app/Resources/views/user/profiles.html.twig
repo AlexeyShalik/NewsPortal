@@ -9,11 +9,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Full name</th>
-                            <th>Email</th>
-                            <th>Roles</th>
-                            <th>Is active</th>
-                            <th>Mailing</th>
+                            <th>{% trans %}Full name {% endtrans %}</th>
+                            <th>{% trans %}Email{% endtrans %}</th>
+                            <th>{% trans %}Roles{% endtrans %}</th>
+                            <th>{% trans %}Is active{% endtrans %}</th>
+                            <th>{% trans %}Mailing{% endtrans %}</th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -30,21 +30,21 @@
                                 </td>
                                 <td>
                                     {% if  user.isActive   == false %}
-                                        No
+                                        <i class="icon-remove"></i>
                                     {% else %}
-                                        Yes
+                                        <i class="icon-ok"></i>
                                     {% endif %}
                                 </td>
                                 <td>
                                     {% if  user.mailingOfLetters   == false %}
-                                    No
+                                        <i class="icon-remove"></i>
                                     {% else %}
-                                    Yes
+                                        <i class="icon-ok"></i>
                                     {% endif %}
                                 </td>
                                 <td><a class="btn btn-default" href="{{ path('admin_users_edit', { 'id': user.id }) }}">
                                       <i class="icon-pencil"></i> </a>
-                                    <a class="btn btn-default" href="{{ path('admin_users_remote', { 'id': user.id }) }}">
+                                    <a class="btn btn-default" href="{{ path('admin_users_remove', { 'id': user.id }) }}">
                                     <i class="icon-trash"></i></a>
                                 </td>
                             </tr>

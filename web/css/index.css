@@ -34,3 +34,14 @@ main:after {
   position: relative;
   min-height: calc(100% - 107px);
 }
+
+.access {
+	margin-top: 10px;
+}
+
+.access>p>a:hover,
+.access>p>a:visited,
+.access>p>a:active,
+.access>p>a:link{
+	text-decoration:none;
+}

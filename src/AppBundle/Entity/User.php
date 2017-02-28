@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
     {
         $this->isActive = false;
         $this->mailingOfLetters = false;
-        $this->roles[] = 'ROLE_USER';
+        $this->roles[] = 'ROLE_GUEST';
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
@@ -218,7 +218,7 @@ class User implements UserInterface, \Serializable
      */
     public function setRoles($roles)
     {
-        $this->roles = $roles;
+        $this->roles = (array)$roles;
 
         return $this;
     }

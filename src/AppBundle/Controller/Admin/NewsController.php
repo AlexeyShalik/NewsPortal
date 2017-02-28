@@ -51,7 +51,7 @@ class NewsController extends Controller
     }
 
     /**
-     * @Route("/{id}/remote", name="moderator_articles_remote")
+     * @Route("/{id}/remove", name="moderator_articles_remove")
      */
     public function remoteAction(Request $request, Article $article)
     {

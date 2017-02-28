@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        $('body').append('<div class="container"><div class="alert alert-info">{{ error }}<div><div>');
+        $('body').append('<div class="container"><div class="alert alert-info">{{ error|trans }}<div><div>');
 
         setTimeout (function (){
             $("div.alert").hide(2000, function () {

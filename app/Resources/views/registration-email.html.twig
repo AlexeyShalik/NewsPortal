@@ -1,10 +1,10 @@
-<h3>You did it! You registered!</h3>
+<h3>{% trans %}You did it! You registered!{% endtrans %}</h3>
 
-Hi {{ user }}! You're successfully registered.
+{% trans %}Hi{% endtrans %} {{ user }}!  {% trans %} You're successfully registered{% endtrans %}.
 
-To login, go to: <a href="http://localhost:8000/app_dev.php/activate/{{ token }}" >Follow the link and activate your account
+{% trans %}To login, go to{% endtrans %}: <a href="http://localhost:8000/app_dev.php/activate/{{ token }}" >{% trans %}Follow the link and activate your account{% endtrans %}
 </a>.
 
-Thanks!
+{% trans %}Thanks!{% endtrans %}
 
-<span style="float: right">With best wishes, admin of NewsPortal</span>
+<span style="float: right">{% trans %}With best wishes, admin of NewsPortal{% endtrans %}</span>
