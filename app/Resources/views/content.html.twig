@@ -1,0 +1,35 @@
+{% extends 'index.html.twig' %}
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('css/loader.css') }}" type="text/css" />
+    <div id="loader" hidden>
+        <div class="contpre">
+            <span class="svg_anm"></span><br>{% trans %}Wait{% endtrans %}<br>
+            <small>{% trans %}Loading{% endtrans %}</small>
+        </div>
+    </div>
+
+    <div id="cont" hidden>
+        <table class="table table-hover table-responsive " id="page-content">
+            <thead>
+                <tr>
+                    <th>{% trans %}News{% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for news in content %}
+
+                    <tr>
+                        <td><a href="/portal/article/{{ news.id}}"><img src="/img/newsImage/mini/{{ news.id}}.jpg"></a></td>
+                        <td><a href="/portal/article/{{ news.id}}"><strong>{{ news.news}}</strong></a><br>
+                            {{ news.shortDescription}}</a></td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+        {{ knp_pagination_render(content) }}
+        </div>
+    </div>
+<script src="{{ asset('js/show-news.js') }}"></script>
+{% endblock %}

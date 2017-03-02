@@ -3,12 +3,12 @@ Exit: Выход
 Home: Главная
 Home Page: Главная страница
 Categories: Категории
-Politics: Политика
-Business: Бизнес
-Sport: Спорт
-Music and life: Музыка и жизнь
-Travel: Путешествия
-Science: Наука
+politics: Политика
+business: Бизнес
+sport: Спорт
+music and life: Музыка и жизнь
+travel: Путешествия
+science: Наука
 News: Новости
 Editing news: Редактировать статьи
 Full name: Имя
@@ -75,3 +75,6 @@ or: или
 enter: Войти
 Hello!: Здраствуйте!
 You have not opened to the news portal. There were many interesting articles. We are waiting for you!: Вы давно не открывали новостной портал. Появилось много интересных статей. Мы ждем вас!
+Search: Поиск
+Wait: Подождите
+Loading: идет загрузка

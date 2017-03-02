@@ -17,13 +17,20 @@ class UserAdminController extends Controller
     /**
      * @Route("/showProfiles", name="admin_show_profiles")
      */
-    public function showProfilesAction()
+    public function showProfilesAction(Request $request)
     {
-        $users = $this->getDoctrine()
-            ->getRepository('AppBundle:User')
-            ->findAll();
+        $dqlService = $this->get('dql_for_knp_paginator');
+        $dql = $dqlService->getDqlForUsers();
+        $em  = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery($dql);
 
-        return $this->render('user/profiles.html.twig', array(
+        $paginator  = $this->get('knp_paginator');
+        $users = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 1)
+        );
+        return $this->render('user/content-profiles.html.twig', array(
             'users' => $users,
         ));
     }
@@ -52,7 +59,7 @@ class UserAdminController extends Controller
     }
 
     /**
-     * @Route("/{id}/remote", name="admin_users_remote")
+     * @Route("/{id}/remote", name="admin_users_remove")
      */
     public function remoteAction(Request $request, User $user)
     {

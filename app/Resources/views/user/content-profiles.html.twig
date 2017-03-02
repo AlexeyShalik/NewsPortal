@@ -1,0 +1,62 @@
+{% extends 'user/profiles.html.twig' %}
+{% block content %}
+    <link rel="stylesheet" href="{{ asset('css/loader.css') }}" type="text/css" />
+    <div id="loader" hidden>
+        <div class="contpre">
+            <span class="svg_anm"></span><br>{% trans %}Wait{% endtrans %}<br>
+            <small>{% trans %}Loading{% endtrans %}</small>
+        </div>
+    </div>
+    <div id="cont" hidden>
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>{% trans %}Full name {% endtrans %}</th>
+                    <th>{% trans %}Email{% endtrans %}</th>
+                    <th>{% trans %}Roles{% endtrans %}</th>
+                    <th>{% trans %}Is active{% endtrans %}</th>
+                    <th>{% trans %}Mailing{% endtrans %}</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for roles in user.roles %}
+                            {{ roles|json_encode}}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if  user.isActive == false %}
+                            <i class="icon-remove"></i>
+                        {% else %}
+                            <i class="icon-ok"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if  user.mailingOfLetters == false %}
+                            <i class="icon-remove"></i>
+                        {% else %}
+                            <i class="icon-ok"></i>
+                        {% endif %}
+                    </td>
+                    <td><a class="btn btn-default" href="{{ path('admin_users_edit', { 'id': user.id }) }}">
+                            <i class="icon-pencil"></i> </a>
+                        <a class="btn btn-default" href="{{ path('admin_users_remove', { 'id': user.id }) }}">
+                            <i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(users) }}
+        </div>
+    </div>
+        <script src="{{ asset('js/show-news.js') }}"></script>
+{% endblock %}

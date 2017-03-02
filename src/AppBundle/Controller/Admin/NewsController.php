@@ -18,12 +18,20 @@ class NewsController extends Controller
     /**
      * @Route("/showArticles", name="moderator_show_articles")
      */
-    public function showArticlesAction()
+    public function showArticlesAction(Request $request)
     {
-        $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Article')
-            ->findAll();
-        return $this->render('articles/articles.html.twig', array('articles' => $articles
+        $dqlService = $this->get('dql_for_knp_paginator');
+        $dql = $dqlService->getDqlForArticles();
+        $em  = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $articles = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 15)
+        );
+        return $this->render('articles/content-articles.html.twig', array('articles' => $articles
         ));
     }
 
@@ -53,11 +61,18 @@ class NewsController extends Controller
     /**
      * @Route("/{id}/remove", name="moderator_articles_remove")
      */
-    public function remoteAction(Request $request, Article $article)
+    public function remoteAction(Request $request, Article $article, $id)
     {
+        if (file_exists("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/mini/$id.jpg")) {
+            unlink("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/mini/$id.jpg");
+        }
+        if (file_exists("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/$id.jpg")) {
+            unlink("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/$id.jpg");
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
+
         return $this->redirectToRoute('moderator_show_articles');
     }
 

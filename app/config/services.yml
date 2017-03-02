@@ -16,11 +16,6 @@ services:
     email:
         class: AppBundle\Services\PasswordRecovery\SendEmail
         autowire: true
-#        arguments: ["@security.password_encoder"]
-# , "plain_value", "%parameter_name%"
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     app.security.login_form_authenticator:
         class: AppBundle\Security\LoginFormAuthenticator
         autowire: true
@@ -32,5 +27,7 @@ services:
             - { name: doctrine.event_subscriber }
     dql_for_knp_paginator:
         class: AppBundle\Services\DQL\DqlForKnpPaginator
-        autowire: true
-
+    dql_for_category_menu:
+        class: AppBundle\Services\DQL\DqlForCategoryMenu
+    search_article:
+        class: AppBundle\Services\Search\SearchService

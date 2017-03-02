@@ -1,0 +1,49 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Новостной портал{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/article.css') }}" type="text/css" />
+{% endblock %}
+
+{% block user_content %}
+    {% include 'header.html.twig'%}
+    <div id="wrapper">
+        <main>
+
+            {% include 'menu.html.twig' %}
+
+            <section>
+                {% if is_granted("ROLE_USER") %}
+
+                    {% if file_exists != false  %}
+                        <img id="img" src="/img/newsImage/{{ article.id }}.jpg">
+                    {% else %}
+                        <img id="img" src="/img/newsImage/mini/{{ article.id }}.jpg">
+                    {% endif %}
+
+                    <p class="name"><strong>{{ article.news }}</strong></p>
+                    <p>{{ article.description }}</p>
+                    <p><strong>Author {{ article.author }}</strong></p>
+                    <p><strong>{{ article.year|date("m/d/Y") }}</strong></p>
+
+                {% else %}
+
+                    <div class="access">
+
+                        {% if  app.user != null%}
+                            {% trans %}Check your email for new messages and activate your account{% endtrans %}
+                        {% else %}
+                            <p>{% trans %}If you want see news, you need to{% endtrans %} <a href="{{ path("user_register") }}">{% trans %}sign up{% endtrans %}</a> {% trans %}in the portal{% endtrans %}<br>
+                                {% trans %}or{% endtrans %} <a href="{{ path("security_login") }}">{% trans %}enter{% endtrans %}</a>
+                            </p>
+                        {% endif %}
+
+                    </div>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+    {% include 'footer.html.twig'%}
+{% endblock user_content %}
