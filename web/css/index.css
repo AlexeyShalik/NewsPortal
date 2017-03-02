@@ -53,3 +53,7 @@ td>a:link{
 	text-decoration:none;
 	color: inherit;
 }
+
+.nothing {
+	margin-top: 20px;
+}
