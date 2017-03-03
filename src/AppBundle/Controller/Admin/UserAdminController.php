@@ -19,14 +19,11 @@ class UserAdminController extends Controller
      */
     public function showProfilesAction(Request $request)
     {
-        $dqlService = $this->get('dql_for_knp_paginator');
-        $dql = $dqlService->getDqlForUsers();
-        $em  = $this->getDoctrine()->getEntityManager();
-        $query = $em->createQuery($dql);
+        $listUsers= $this->get('dql_for_entities')->getDqlForUsers();
 
         $paginator  = $this->get('knp_paginator');
         $users = $paginator->paginate(
-            $query,
+            $listUsers,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 1)
         );

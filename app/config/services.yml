@@ -25,10 +25,9 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
-    dql_for_knp_paginator:
-        class: AppBundle\Services\DQL\DqlForKnpPaginator
-    dql_for_category_menu:
-        class: AppBundle\Services\DQL\DqlForCategoryMenu
+    dql_for_entities:
+        class: AppBundle\Services\DQL\DqlForEntities
+        autowire: true
     search_article:
         class: AppBundle\Services\Search\SearchService
         autowire: true

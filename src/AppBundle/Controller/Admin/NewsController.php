@@ -20,14 +20,11 @@ class NewsController extends Controller
      */
     public function showArticlesAction(Request $request)
     {
-        $dqlService = $this->get('dql_for_knp_paginator');
-        $dql = $dqlService->getDqlForArticles();
-        $em  = $this->getDoctrine()->getEntityManager();
-        $query = $em->createQuery($dql);
+        $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
 
         $paginator  = $this->get('knp_paginator');
         $articles = $paginator->paginate(
-            $query,
+            $listArticles,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 15)
         );
