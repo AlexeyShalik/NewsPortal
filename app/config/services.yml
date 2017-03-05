@@ -31,3 +31,6 @@ services:
     search_article:
         class: AppBundle\Services\Search\SearchService
         autowire: true
+    knp_paginator_for_stage:
+        class: AppBundle\Services\KnpPaginator\KnpPaginatorForStage
+        autowire: true

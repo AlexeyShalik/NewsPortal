@@ -6,15 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
- *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  */
 class Category
 {
     /**
-     * One Product has Many Features.
      * @ORM\OneToMany(targetEntity="Article", mappedBy="category")
      */
     private $articles;

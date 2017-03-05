@@ -5,7 +5,6 @@ $(document).ready(function() {
         marginLeft: '15px'
     });
     $('#category>a').bind('click', function(){
-
-        category.attr('hidden',!category.attr('hidden') );
+        category.fadeToggle(1000);
     });
 });

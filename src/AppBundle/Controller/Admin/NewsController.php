@@ -22,13 +22,10 @@ class NewsController extends Controller
     {
         $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
 
-        $paginator  = $this->get('knp_paginator');
-        $articles = $paginator->paginate(
-            $listArticles,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 15)
-        );
-        return $this->render('articles/content-articles.html.twig', array('articles' => $articles
+        $articles = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listArticles, $request);
+
+        return $this->render('articles/content-articles.html.twig', array(
+            'articles' => $articles
         ));
     }
 

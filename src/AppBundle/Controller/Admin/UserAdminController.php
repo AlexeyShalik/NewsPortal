@@ -21,12 +21,8 @@ class UserAdminController extends Controller
     {
         $listUsers= $this->get('dql_for_entities')->getDqlForUsers();
 
-        $paginator  = $this->get('knp_paginator');
-        $users = $paginator->paginate(
-            $listUsers,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 1)
-        );
+        $users = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listUsers, $request);
+
         return $this->render('user/content-profiles.html.twig', array(
             'users' => $users,
         ));

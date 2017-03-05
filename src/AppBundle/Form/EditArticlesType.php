@@ -3,6 +3,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Article;
 use AppBundle\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -78,6 +79,19 @@ class EditArticlesType extends AbstractType
                             'class' => 'form-control js-datepicker',
                             'placeholder' => "date")
                     )
+            )
+            ->add(
+                'similar',
+                EntityType::class,
+                array(
+                    'class' => Article::class,
+                    'choice_label' => 'news',
+                    'multiple' => true,
+                    'attr' => array(
+                        'class' => 'selectpicker',
+                        'multiple data-max-options' => "5"
+                    )
+                )
             );
     }
 

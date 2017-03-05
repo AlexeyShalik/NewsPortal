@@ -46,6 +46,7 @@
                         });
                     </script>
                 </div>
+                {{ form_row(articleForm.similar)}}
                 <button type="submit" class="btn control-buttons" formnovalidate>{% trans %}Save{% endtrans %}</button>
                 <button type="button" class="btn btn-danger control-buttons" onclick="history.back(-1)">{% trans %}Cancel{% endtrans %}</button>
                 {{ form_end(articleForm) }}
@@ -55,5 +56,6 @@
     </div>
     {% block javascripts %}
         <script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-select.js') }}"></script>
     {% endblock %}
 {% endblock user_content %}

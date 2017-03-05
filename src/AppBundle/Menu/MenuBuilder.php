@@ -17,9 +17,25 @@ class MenuBuilder implements ContainerAwareInterface
 
         $menu
             ->addChild(
-                'Home Page',
+                'All articles',
                 array(
                     'route' => 'portal'
+                )
+            );
+
+        $menu
+            ->addChild(
+                'New articles',
+                array(
+                    'uri' => '/portal/newArticles'
+                )
+            );
+
+        $menu
+            ->addChild(
+                'Popular',
+                array(
+                    'uri' => '/portal/popular'
                 )
             );
 
@@ -49,7 +65,7 @@ class MenuBuilder implements ContainerAwareInterface
                 ->addChild(
                     $category->getName(),
                     array(
-                        'route' => 'homepage'
+                        'uri' => "/portal/".$category->getName()
                     )
                 );
         }

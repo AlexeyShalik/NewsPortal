@@ -7,3 +7,9 @@ font-size: 24px;
     margin: 25px 15px 15px -50px;
     float:left;
 }
+
+hr {
+    color: black;
+    background-color: black;
+    height: 2px;
+}

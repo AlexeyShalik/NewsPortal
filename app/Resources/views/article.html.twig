@@ -28,6 +28,25 @@
                     <p><strong>Author {{ article.author }}</strong></p>
                     <p><strong>{{ article.year|date("m/d/Y") }}</strong></p>
 
+                    {% if article.similar is empty %}
+                        <hr>
+                        <p><strong>{% trans %}No similar articles{% endtrans %}</strong></p>
+                        {% else %}
+                        <hr>
+                        <div class="row">
+                            <p><strong>{% trans %}Similar articles{% endtrans %}</strong></p>
+                            {% for similar in article.similar%}
+                                <div class="col-xs-6 col-md-4">
+                                    <a href="/portal/article/{{ similar.id}}" style="float: left;"><img src="/img/newsImage/mini/{{ similar.id}}.jpg"></a>
+                                    <div style="clear: left"></div>
+                                    <a href="/portal/article/{{ similar.id}}"><strong>{{ similar.news}}</strong></a><br>
+                                        {{ similar.shortDescription}}
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                 {% else %}
 
                     <div class="access">

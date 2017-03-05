@@ -11,4 +11,4 @@ login:
 
 portal:
     path: /portal
-    defaults: { _controller: AppBundle:NewsPortal:show }
+    defaults: { _controller: AppBundle:NewsPortal:showAllArticles }

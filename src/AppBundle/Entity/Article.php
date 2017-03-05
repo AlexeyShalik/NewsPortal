@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
-     * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
@@ -54,6 +53,31 @@ class Article
      * @ORM\Column(name="year", type="date")
      */
     private $year;
+
+    /**
+     * @ORM\Column(name="popular", type="integer")
+     */
+    private $popular;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", inversedBy="similarReturn")
+     * @ORM\JoinTable(name="similar",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="relateded_article_id", referencedColumnName="id")}
+     *      )
+     */
+    private $similar;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="similar")
+     */
+    private $similarReturn;
+
+    public function __construct()
+    {
+        $this->similar = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->similarReturn = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -207,5 +231,105 @@ class Article
     public function getShortDescription()
     {
         return $this->shortDescription;
+    }
+
+    /**
+     * Set popular
+     *
+     * @param integer $popular
+     *
+     * @return Article
+     */
+    public function setPopular($popular)
+    {
+        $this->popular = $popular;
+
+        return $this;
+    }
+
+    /**
+     * Get popular
+     *
+     * @return integer
+     */
+    public function getPopular()
+    {
+        return $this->popular;
+    }
+
+
+    public function setSimilar(\AppBundle\Entity\Article $similar)
+    {
+        $this->similar[] = $similar;
+
+        return $this;
+    }
+
+    /**
+     * Add similar
+     *
+     * @param \AppBundle\Entity\Article $similar
+     *
+     * @return Article
+     */
+    public function addSimilar(\AppBundle\Entity\Article $similar)
+    {
+        $this->similar[] = $similar;
+
+        return $this;
+    }
+
+    /**
+     * Remove similar
+     *
+     * @param \AppBundle\Entity\Article $similar
+     */
+    public function removeSimilar(\AppBundle\Entity\Article $similar)
+    {
+        $this->similar->removeElement($similar);
+    }
+
+    /**
+     * Get similar
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSimilar()
+    {
+        return $this->similar;
+    }
+
+    /**
+     * Add similarReturn
+     *
+     * @param \AppBundle\Entity\Article $similarReturn
+     *
+     * @return Article
+     */
+    public function addSimilarReturn(\AppBundle\Entity\Article $similarReturn)
+    {
+        $this->similarReturn[] = $similarReturn;
+
+        return $this;
+    }
+
+    /**
+     * Remove similarReturn
+     *
+     * @param \AppBundle\Entity\Article $similarReturn
+     */
+    public function removeSimilarReturn(\AppBundle\Entity\Article $similarReturn)
+    {
+        $this->similarReturn->removeElement($similarReturn);
+    }
+
+    /**
+     * Get similarReturn
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSimilarReturn()
+    {
+        return $this->similarReturn;
     }
 }
