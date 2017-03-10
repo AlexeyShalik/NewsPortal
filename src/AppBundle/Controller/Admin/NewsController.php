@@ -8,7 +8,8 @@ use AppBundle\Form\LoadImagesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/moderator")
@@ -20,13 +21,19 @@ class NewsController extends Controller
      */
     public function showArticlesAction(Request $request)
     {
-        $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
+        if (empty($request->query->all()) == false) {
+            if ($request->query->has('filter')) {
+                $listArticles = $this->get('dql_for_entities')->getDqlForFilterArticles($request);
+            } else {
+                $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
+            }
+            $response = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listArticles, $request);
+            $jsonContent = $this->get('json_serializer')->getJson($response);
 
-        $articles = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listArticles, $request);
-
-        return $this->render('articles/content-articles.html.twig', array(
-            'articles' => $articles
-        ));
+            return new JsonResponse(array($jsonContent, $response->getPaginationData()['lastPageInRange']));
+        } else {
+            return $this->render('articles/articles.html.twig');
+        }
     }
 
     /**

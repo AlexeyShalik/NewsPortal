@@ -34,3 +34,6 @@ services:
     knp_paginator_for_stage:
         class: AppBundle\Services\KnpPaginator\KnpPaginatorForStage
         autowire: true
+    json_serializer:
+        class: AppBundle\Services\JSONSerializer\JsonSerializer
+        autowire: true

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Services\DQL;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\Container;
 
 class DqlForEntities
@@ -54,6 +55,22 @@ class DqlForEntities
                 FROM AppBundle:Article news
                 ORDER BY news.popular DESC 
                 ');
+
+        $result = $em->getResult();
+
+        return $result;
+    }
+
+    public function getDqlForFilterArticles(Request $request)
+    {
+        $field = $request->query->get('sort');
+
+        $em = $this->container->get('doctrine')->getManager()
+            ->createQuery('
+        SELECT articles
+        FROM AppBundle:Article articles 
+        WHERE articles.'.$field.' LIKE :request
+        ')->setParameter('request', '%'.$request->query->get('filter').'%');
 
         $result = $em->getResult();
 

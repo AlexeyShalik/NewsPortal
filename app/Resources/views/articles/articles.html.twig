@@ -2,6 +2,9 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/add.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ajax-grid.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-select.css') }}">
     {{ parent() }}
 {% endblock %}
 
@@ -19,14 +22,75 @@
                     </a>
 
 
-                <article id="content">
-                    {% block content %}
+                    <div class="grid-header row container">
+                        <div class="list">
+                            <label for="sort-by-value">{% trans %}Sort by{% endtrans %}</label>
+                            <div style="clear: right"></div>
+                            <select class="settings-select form-control" name="sort_by_value" id="sort-by-value">
+                            </select>
+                        </div>
+                        <div class="list">
+                            <label for="sort-order-value">{% trans %}Sort type{% endtrans %}</label>
+                            <div style="clear: right"></div>
+                            <select class="settings-select form-control" name="sort_type_value" id="sort-order-value">
+                                <option value="asc" selected>ascending</option>
+                                <option value="desc">descending</option>
+                            </select>
+                        </div>
+                        <div class="list">
+                            <label for="filter-field-value">{% trans %}Filter by{% endtrans %}</label>
+                            <div style="clear: right"></div>
+                            <select class="settings-select form-control" name="filter_field_value" id="filter-field-value">
+                            </select>
+                        </div>
 
-                    {% endblock %}
-                </article>
+                        <form class="navbar-form navbar-left filter" style="margin-top: 25px">
+                            <div class="form-group">
+                                <div id="tooltip" hidden>{% trans %}date{% endtrans %}: {% trans %}year-mounth-day{% endtrans %}</div>
+                                <input type="search" id="filter" class="form-control" placeholder="{% trans %}Filter{% endtrans %}">
+                            </div>
+                            <button type="submit"  class="btn btn-default filter">{% trans %}Filter{% endtrans %}</button>
+                        </form>
+
+                        </div>
+                    </div>
+
+                    <div id="loader" hidden>
+                        <div class="contpre">
+                            <span class="svg_anm"></span><br>{% trans %}Wait{% endtrans %}<br>
+                            <small>{% trans %}Loading{% endtrans %}</small>
+                        </div>
+                    </div>
+
+                    <article id="content" hidden>
+                            <table class="table table-hover table-responsive">
+                                <thead id="content-thead">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>{% trans %}Articles{% endtrans %}</th>
+                                    <th>{% trans %}Category{% endtrans %}</th>
+                                    <th>{% trans %}Author{% endtrans %}</th>
+                                    <th>{% trans %}Short description{% endtrans %}</th>
+                                    <th>{% trans %}Date{% endtrans %}</th>
+
+                                </tr>
+                                </thead>
+                                <tbody  id="content-tbody">
+
+                                </tbody>
+                            </table>
+                        <div id="page-selection"></div>
+
+                    </article>
 
 
             </div>
         </div>
     </div>
+    {% block javascripts %}
+        <script src="{{ asset('js/newPlugin.js') }}"></script>
+        <script src="{{ asset('js/ajax-grid.js') }}"></script>
+        <script src="{{ asset('js/listArticles.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+    {% endblock %}
 {% endblock user_content %}

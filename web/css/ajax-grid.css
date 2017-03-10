@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.transition {
+    transition: all .2s ease;
+}
+
+.rounded {
+    border-radius: 3px;
+}
+
+body {
+    background: rgb(215, 215, 215);
+    font-family: "Roboto", sans-serif;
+
+}
+.grid-wrapper {
+    position:absolute;
+    width:80%;
+    top:3%;
+    left:50%;
+    transform:translate(-50%);
+}
+.grid-header {
+    display: flex;
+
+}
+
+.grid-header .title {
+margin-right: 200px;
+    align-content: center;
+}
+
+.grid-header .title h2 {
+    margin:0;
+}
+
+.grid-header .settings {
+    display: flex;
+}
+
+.grid-header .settings .settings-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.settings input[type="text"] {
+    margin:0;
+    height:30px;
+}
+
+.settings select {
+    margin-left:0;
+}
+
+.settings .settings-element {
+    margin-left: 15px;
+}
+
+.pagination {
+    display: flex;
+    margin:20px 0;
+    align-content: center;
+    justify-content: center;
+}
+
+.pagination .active {
+    background: #2bbbad;
+    color:#fff;
+}
+
+label{
+    font-size: 11.9px;
+    font-weight: bold;
+    line-height: 20px;
+    color: inherit;
+    margin-bottom: -4px;
+}
+
+.form-search{
+    position: relative;
+    top: 15px;
+    margin-left: 10px;
+}
+.symfonyLabel {
+    font-family: Monotype Corsiva;
+    padding-left: 15px;
+}
