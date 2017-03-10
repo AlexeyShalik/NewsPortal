@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/ajax-grid.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/loader.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/category-edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-select.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block user_content %}
+    {% include 'header.html.twig'%}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+
+                <a class="addButton" href="{{ path('moderator_category_add') }}">
+                    <div>
+                        <i class="icon-plus"></i>
+                        {% trans %}Add category{% endtrans %}
+                    </div>
+                </a>
+
+                <div class=" container">
+
+                    <div id="category" style="margin-top: 27px;float:right; ">
+                        <a href="{{ path("moderator_show_articles") }}"  class="btn btn-danger">{% trans %}Articles{% endtrans %}</a>
+                    </div>
+
+                </div>
+
+                {% block content %}
+                {% endblock content %}
+
+            </div>
+        </div>
+    </div>
+{% endblock user_content %}

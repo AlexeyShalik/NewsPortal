@@ -18,6 +18,6 @@
     position: absolute;
     width: 41px;
     height: 41px;
-    background: url(web/img/ring.svg) center center no-repeat;
+    background: url(/img/ring.svg) center center no-repeat;
     background-size:41px;
     margin: -16px 0 0 -16px;}

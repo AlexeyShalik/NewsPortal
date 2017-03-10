@@ -35,4 +35,17 @@ class KnpPaginatorForStage
 
         return $content;
     }
+
+//Made to demonstrate pagination on the category page
+    public function knpPaginatorForCategory($listArticles, $request)
+    {
+        $paginator  = $this->container->get('knp_paginator');
+        $content = $paginator->paginate(
+            $listArticles,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
+
+        return $content;
+    }
 }

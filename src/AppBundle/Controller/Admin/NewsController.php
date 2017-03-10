@@ -4,12 +4,10 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Article;
 use AppBundle\Form\EditArticlesType;
-use AppBundle\Form\LoadImagesType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/moderator")
