@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class NewsPortalController extends Controller
 {
@@ -22,25 +24,22 @@ class NewsPortalController extends Controller
 
     /**
      * @Route("/portal/article/{id}", name="portal_article_show")
+     * @ParamConverter("article", class="AppBundle:Article")
      */
-    public function showArticleAction($id)
+    public function showArticleAction(Article $article)
     {
-        $article = $this->getDoctrine()
-           ->getRepository('AppBundle:Article')
-           ->findOneById($id);
-
-        $article->setPopular($article->getPopular()+1);
+        $article->setPopular($article->getPopular() + 1);
         $em = $this->getDoctrine()->getManager();
         $em->persist($article);
         $em->flush();
 
-        $filename = "D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/$id.jpg";
+        $filename = $this->getParameter('image_large') . $article->getId() . ".jpg";
         $file_exists = file_exists($filename);
 
         return $this->render('article.html.twig', array(
-            'article' => $article,
-            'file_exists' => $file_exists,
-        ));
+                'article' => $article,
+                'file_exists' => $file_exists,
+            ));
     }
 
     /**
@@ -69,14 +68,14 @@ class NewsPortalController extends Controller
 
     /**
      * @Route("/portal/{category}", name="portal_by_category")
+     * @ParamConverter("category", class="AppBundle:Category",  options={"mapping": {"category" : "name"}})
      */
     public function showArticlesCategoryAction(Request $request, $category)
     {
         $listArticles = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
             ->findByCategory(
-                $this->getDoctrine()
-                    ->getRepository('AppBundle:Category')->findOneByName($category)->getId());
+                $category->getId());
 
         $content = $this->get('knp_paginator_for_stage')->knpPaginatorForHomePage($listArticles, $request);
 

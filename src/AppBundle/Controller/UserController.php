@@ -7,6 +7,7 @@ use AppBundle\Form\UserRegistrationForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class UserController extends Controller
 {
@@ -61,12 +62,11 @@ class UserController extends Controller
 
     /**
      * @Route("/activate/{token}", name="user_is_active")
+     * @ParamConverter("token", class="AppBundle:User")
      */
     public function activateAction($token)
     {
-        $user = $this->getDoctrine()
-            ->getRepository('AppBundle:User')
-            ->find($token);
+        $user = $token;
         $user->setIsActive(true);
         $user->setRoles('ROLE_USER');
         $em = $this->getDoctrine()->getManager();

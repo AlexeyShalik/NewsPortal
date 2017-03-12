@@ -62,11 +62,11 @@ class NewsController extends Controller
      */
     public function remoteAction(Request $request, Article $article, $id)
     {
-        if (file_exists("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/mini/$id.jpg")) {
-            unlink("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/mini/$id.jpg");
+        if (file_exists($this->getParameter('image_mini')."$id.jpg")) {
+            unlink($this->getParameter('image_mini')."$id.jpg");
         }
-        if (file_exists("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/$id.jpg")) {
-            unlink("D:/PHP/Projects/CourseWork/NewsPortal/web/img/newsImage/$id.jpg");
+        if (file_exists($this->getParameter('image_large')."$id.jpg")) {
+            unlink($this->getParameter('image_large')."$id.jpg");
         }
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
@@ -92,10 +92,11 @@ class NewsController extends Controller
             $em->flush();
 
             if ($request->files->get('photo')!=null) {
-                $id = $this->getDoctrine()->getRepository('AppBundle\Entity\Article')->findBy(array('news' => $article->getNews()));
+                $id = $this->getDoctrine()->getRepository('AppBundle\Entity\Article')
+                    ->findOneByNews($article->getNews())->getId();
 
                 $image = $request->files->get('photo');
-                $image->move($this->getParameter('brochures_directory'), $id[0]->getId() . '.jpg');
+                $image->move($this->getParameter('brochures_directory'), $id . '.jpg');
             }
             return $this->redirectToRoute('moderator_show_articles');
         }
