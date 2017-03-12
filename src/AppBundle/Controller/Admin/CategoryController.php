@@ -7,6 +7,7 @@ use AppBundle\Form\EditCategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/moderator")
@@ -69,7 +70,7 @@ class CategoryController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
-
+            ;
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -29,32 +30,38 @@ class Article
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="news", type="string", length=255, unique=true)
      */
     private $news;
 
     /**
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
 
     /**
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="short_description", type="text")
      */
     private $shortDescription;
 
     /**
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="year", type="date")
      */
     private $year;
 
     /**
+     * @Assert\Regex(pattern="/\d+/", message = "article.popular.regex")
+     * @Assert\NotBlank(message = "category.name.not_blank")
      * @ORM\Column(name="popular", type="integer")
      */
     private $popular;

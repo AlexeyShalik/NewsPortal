@@ -4,10 +4,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @UniqueEntity("name",  message = "category.name.unique_entity")
  */
 class Category
 {
@@ -27,7 +30,7 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "article.news.not_blank")
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;

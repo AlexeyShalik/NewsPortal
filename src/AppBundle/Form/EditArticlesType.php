@@ -92,6 +92,16 @@ class EditArticlesType extends AbstractType
                         'multiple data-max-options' => "5"
                     )
                 )
+            )
+            ->add(
+                'popular',
+                TextType::class,
+                array(
+                    'attr' => array(
+                        'class' => 'form-control',
+                        'placeholder' => "Popularity"
+                    )
+                )
             );
     }
 

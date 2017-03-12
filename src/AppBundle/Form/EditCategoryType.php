@@ -19,7 +19,8 @@ class EditCategoryType extends AbstractType
                 array(
                     'attr' => array(
                         'class' => 'form-control',
-                        'placeholder' => "name category"
+                        'placeholder' => "name category",
+                        'name' => 'category'
                     )
                 )
             );

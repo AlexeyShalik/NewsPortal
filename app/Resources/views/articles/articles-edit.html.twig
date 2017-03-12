@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}{% trans %}Edit article{% endtrans %}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap-datetimepicker.css') }}">
@@ -42,6 +43,10 @@
                     </script>
                 </div>
                 {{ form_row(articleForm.similar)}}
+                <div></div>
+                {{ form_label(articleForm.popular,'Popularity') }}
+                {{ form_errors(articleForm.popular) }}
+                {{ form_widget(articleForm.popular) }}
                 <button type="submit" class="btn control-buttons" formnovalidate>{% trans %}Save{% endtrans %}</button>
                 <button type="button" class="btn btn-danger control-buttons" onclick="history.back(-1)">{% trans %}Cancel{% endtrans %}</button>
                 {{ form_end(articleForm) }}

@@ -1,0 +1,4 @@
+article.news.not_blank: Это поле не должно быть пустым
+category.name.unique_entity: Это название категории уже используется
+category.name.not_blank: Это поле не должно быть пустым
+article.popular.regex: Это значение не является целым числом
