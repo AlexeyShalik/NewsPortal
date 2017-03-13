@@ -1,4 +1,4 @@
-{% extends "/layout.html.twig" %}
+{% extends "layout.html.twig" %}
 {% block title %}
     {% trans %}Sign up{% endtrans %}
 {% endblock %}
@@ -7,16 +7,23 @@
         <link rel="stylesheet" href="{{ asset('css/login.css') }}" type="text/css" />
     {% endblock %}
 {% block user_content %}
+    <div id="error"></div>
     {{ form_start(form,{'attr': {'class': 'form-signin'}}) }}
         {{ form_label(form.username) }}
         {{ form_widget(form.username) }}
+        {{ form_errors(form.username) }}
 
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
 
         {{ form_label(form.plainPassword) }}
         {{ form_widget(form.plainPassword) }}
 
-    {{ form_errors(form) }}
     {{ form_end(form) }}
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/registrate-error.js') }}"></script>
+    {% endblock %}
+
 {% endblock user_content %}

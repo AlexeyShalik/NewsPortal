@@ -15,8 +15,8 @@ class SendEmail
     public function sendEmail($email, $token)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Registration at NewsPortal')
-            ->setFrom('newsportalnovostyashka@gmail.com')
+            ->setSubject('Recovery Password at NewsPortal')
+            ->setFrom($this->container->getParameter('mailer_user'))
             ->setTo($email)
             ->setContentType('text/html')
             ->setBody(

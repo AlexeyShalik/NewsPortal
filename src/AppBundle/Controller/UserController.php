@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Registration at NewsPortal')
-            ->setFrom('newsportalnovostyashka@gmail.com')
+            ->setFrom($this->getParameter('mailer_user'))
             ->setTo($email)
             ->setContentType('text/html')
             ->setBody(

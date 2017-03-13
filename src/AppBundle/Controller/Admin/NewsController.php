@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/moderator")
@@ -17,21 +18,25 @@ class NewsController extends Controller
     /**
      * @Route("/showArticles", name="moderator_show_articles")
      */
-    public function showArticlesAction(Request $request)
+    public function showArticlesAction()
     {
-        if (empty($request->query->all()) == false) {
-            if ($request->query->has('filter')) {
-                $listArticles = $this->get('dql_for_entities')->getDqlForFilterArticles($request);
-            } else {
-                $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
-            }
-            $response = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listArticles, $request);
-            $jsonContent = $this->get('json_serializer')->getJson($response);
+        return $this->render('articles/articles.html.twig');
+    }
 
-            return new JsonResponse(array($jsonContent, $response->getPaginationData()['lastPageInRange']));
+    /**
+     * @Route("/showArticles/data", name="moderator_show_articles_data")
+     */
+    public function dataArticlesAction(Request $request)
+    {
+        if ($request->query->has('filter')) {
+            $listArticles = $this->get('dql_for_entities')->getDqlForFilterArticles($request);
         } else {
-            return $this->render('articles/articles.html.twig');
+            $listArticles = $this->get('dql_for_entities')->getDqlForArticles();
         }
+        $response = $this->get('knp_paginator_for_stage')->knpPaginatorForAdminPage($listArticles, $request);
+        $jsonContent = $this->get('json_serializer')->getJson($response);
+
+        return new JsonResponse(array($jsonContent, $response->getPaginationData()['lastPageInRange']));
     }
 
     /**

@@ -45,10 +45,10 @@ class UserRegistrationForm extends AbstractType
                     'first_options' => array(
                         'attr' => array(
                             'class'=>'form-control', 'placeholder'=>'Password',)),
-                            'second_options' => array(
-                                'attr' => array(
-                                    'class'=>'form-control',
-                                    'placeholder'=>'Repeat Password',)),
+                    'second_options' => array(
+                        'attr' => array(
+                            'class'=>'form-control',
+                            'placeholder'=>'Repeat Password',)),
             ))
             ->add(
                 'save',
