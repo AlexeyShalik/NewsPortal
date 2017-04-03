@@ -29,13 +29,6 @@ class PasswordRecovery
     private $accessToken;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="expires", type="string", length=10)
-     */
-    private $expires;
-
-    /**
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -73,30 +66,6 @@ class PasswordRecovery
     public function getAccessToken()
     {
         return $this->accessToken;
-    }
-
-    /**
-     * Set expires.
-     *
-     * @param string $expires
-     *
-     * @return PasswordRecovery
-     */
-    public function setExpires($expires)
-    {
-        $this->expires = $expires;
-
-        return $this;
-    }
-
-    /**
-     * Get expires.
-     *
-     * @return string
-     */
-    public function getExpires()
-    {
-        return $this->expires;
     }
 
     /**
