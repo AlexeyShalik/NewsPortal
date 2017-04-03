@@ -1,6 +1,6 @@
 $(document).ready(
    $("#content-tbody").ajaxGrid({
-       dataUrl: 'http://localhost:8000/moderator/showArticles/data',
+       dataUrl: document.location.href + '/data',
        sortableColumns: ['id','news', 'author'],
        filterableColumns: ['id', 'news', 'author', 'year']
    }),
