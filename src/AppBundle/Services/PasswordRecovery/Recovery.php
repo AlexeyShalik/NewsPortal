@@ -38,7 +38,6 @@ class Recovery
     {
         $recovery->setAccessToken($this->token);
         $recovery->setUser($user);
-        $recovery->setExpires('1h');
         $this->em->persist($recovery);
         $this->em->flush();
     }
