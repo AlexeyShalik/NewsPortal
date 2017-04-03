@@ -2,7 +2,7 @@
 
 {% trans %}Hi{% endtrans %} {{ user }}!  {% trans %} You're successfully registered{% endtrans %}.
 
-{% trans %}To login, go to{% endtrans %}: <a href="http://localhost:8000/app_dev.php/activate/{{ token }}" >{% trans %}Follow the link and activate your account{% endtrans %}
+{% trans %}To login, go to{% endtrans %}: <a href="http://localhost:8000{{ path("user_is_active", {'token': token}) }}" >{% trans %}Follow the link and activate your account{% endtrans %}
 </a>.
 
 {% trans %}Thanks!{% endtrans %}
